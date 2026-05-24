@@ -1,8 +1,9 @@
 package com.example.laboratorio3.repositories;
 
 
+import com.example.laboratorio3.domain.entities.Specimen;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
-public interface SpecimenRepository<Specimen> extends JpaRepository<Specimen, UUID> {
+public interface SpecimenRepository extends JpaRepository<Specimen, UUID> {
 }

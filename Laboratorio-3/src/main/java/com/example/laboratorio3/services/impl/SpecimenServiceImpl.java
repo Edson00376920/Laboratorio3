@@ -6,6 +6,7 @@ import com.example.laboratorio3.domain.dto.request.UpdateSpecimenRequest;
 import com.example.laboratorio3.domain.dto.response.PageableResponse;
 import com.example.laboratorio3.domain.dto.response.SpecimenResponse;
 import com.example.laboratorio3.domain.entities.Specimen;
+import com.example.laboratorio3.exceptions.ResourceNotFoundException;
 import com.example.laboratorio3.repositories.SpecimenRepository;
 import com.example.laboratorio3.services.SpecimenService;
 import jakarta.transaction.Transactional;
@@ -15,10 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +28,7 @@ public class SpecimenServiceImpl implements SpecimenService {
     @Transactional
     public SpecimenResponse createSpecimen(CreateSpecimenRequest request) {
         return specimenMapper.toDto(
-                specimenRepository.save(specimenMapper.toEntity(request))
+                (Specimen) specimenRepository.save(specimenMapper.toEntityCreate(request))
         );
     }
 
@@ -59,7 +57,7 @@ public class SpecimenServiceImpl implements SpecimenService {
     @Transactional
     public SpecimenResponse updateSpecimen(UUID id, UpdateSpecimenRequest request) {
         this.getSpecimenById(id);
-        return specimenMapper.toDto(specimenRepository.save(specimenMapper.toEntityUpdate(request, id)));
+        return specimenMapper.toDto((Specimen)specimenRepository.save(specimenMapper.toEntityUpdate(request, id)));
     }
 
     @Transactional

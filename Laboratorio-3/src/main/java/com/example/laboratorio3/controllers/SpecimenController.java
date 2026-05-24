@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/specimens")
+@RequestMapping("/api/specimens")
 @RequiredArgsConstructor
 public class SpecimenController {
 

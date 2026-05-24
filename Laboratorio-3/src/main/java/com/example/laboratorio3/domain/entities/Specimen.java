@@ -1,3 +1,5 @@
+package com.example.laboratorio3.domain.entities;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.UUID;
